@@ -1,0 +1,1218 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# Global Styles (الأنماط العامة)
+--------------------------------------------------------------*/
+body {
+    /* تطبيق الخطوط الجديدة: Cairo و Inter */
+    font-family: "Cairo", "Inter", sans-serif;
+    color: #E0E0E0; /* رمادي فاتح للنص الأساسي */
+
+background-image: url(assets/img/pic5.jpg);
+
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    background-color: #fcf9f9; /* أسود للخلفية الأساسية */
+}
+
+a {
+    color: #e7ecec; /* *اللون الأساسي: البرتقالي الناري* */
+}
+
+a:hover {
+    color: #4F4F4F; /* رمادي داكن دافئ للتحويم */
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /* استخدام خط Lora للعناوين لزيادة الأناقة */
+    font-family: "Lora", serif;
+    color: #F0F0F0; /* أبيض ناصع للعناوين */
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 15px;
+    bottom: 15px;
+    z-index: 99999;
+}
+
+.back-to-top i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background: #86eb68; /* رمادي داكن عسكري */
+    color: #f8ffff; /* *برتقالي ناري ساطع* */
+    transition: all 0.4s;
+}
+
+.back-to-top i:hover {
+    background: #8c00ff; /* *برتقالي ناري ساطع للتحويم* */
+    color: #1A1A1A; /* نص داكن */
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #1A1A1A; /* أسود داكن */
+}
+
+#preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #2600ff; /* *برتقالي ناري ساطع* */
+    border-top-color: #ce0c0c; /* رمادي داكن دافئ كخلفية */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-preloader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+    [data-aos-delay] {
+        transition-delay: 0 !important;
+    }
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+    background: rgba(2, 1, 58, 0.9); /* رمادي داكن جداً للخلفية مع شفافية */
+    border-bottom: 2px solid rgba(58, 65, 60, 0.1); /* حدود ناعمة فاتحة */
+    transition: all 0.5s;
+    z-index: 997;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(18, 70, 240, 0.5); /* ظل داكن واضح */
+}
+
+#header .logo {
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: "Lora", serif;
+}
+
+#header .logo a {
+    color: #e7edee; /* *برتقالي ناري ساطع للوجو* */
+    text-transform: uppercase;
+}
+
+#header .logo img {
+    max-height: 40px;
+}
+
+@media (max-width: 768px) {
+    #header .logo {
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-family: "Lora", serif;
+    }
+
+    #header .logo a {
+        color: #0db6d4;
+        text-transform: uppercase;
+    }
+
+    #header .logo img {
+        max-height: 40px;
+    }
+}
+
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Desktop Navigation */
+.nav-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-menu > ul {
+    display: flex;
+}
+
+.nav-menu > ul > li {
+    position: relative;
+    white-space: nowrap;
+    padding: 10px 0 10px 28px;
+}
+
+.nav-menu a {
+    display: block;
+    position: relative;
+    color: #E0E0E0; /* نص فاتح */
+    transition: 0.3s;
+    font-size: 14px;
+    font-family: "Cairo", "Inter", sans-serif; /* تطبيق الخطوط */
+    font-weight: 600;
+}
+
+.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+    color: #0869b8; /* *برتقالي ناري ساطع للتحويم* */
+    cursor: pointer;
+}
+
+.nav-menu .drop-down ul {
+    display: block;
+    position: absolute;
+    left: 14px;
+    top: calc(100% + 30px);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    padding: 10px 0;
+    border-radius: 5px;
+    background: #07afa7; /* رمادي داكن جداً للقائمة المنسدلة */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+.nav-menu .drop-down:hover > ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+.nav-menu .drop-down li {
+    min-width: 180px;
+    position: relative;
+}
+
+.nav-menu .drop-down ul a {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: none;
+    color: #E0E0E0;
+}
+
+.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
+    color: #1eadd8;
+}
+
+.nav-menu .drop-down > a:after {
+    content: "\ea99";
+    font-family: IcoFont;
+    padding-left: 5px;
+}
+
+.nav-menu .drop-down .drop-down ul {
+    top: 0;
+    left: calc(100% - 30px);
+}
+
+.nav-menu .drop-down .drop-down:hover > ul {
+    opacity: 1;
+    top: 0;
+    left: 100%;
+}
+
+.nav-menu .drop-down .drop-down > a {
+    padding-right: 35px;
+}
+
+.nav-menu .drop-down .drop-down > a:after {
+    content: "\eaa0";
+    font-family: IcoFont;
+    position: absolute;
+    right: 15px;
+}
+
+@media (max-width: 1366px) {
+    .nav-menu .drop-down .drop-down ul {
+        left: -90%;
+    }
+    .nav-menu .drop-down .drop-down:hover > ul {
+        left: -100%;
+    }
+    .nav-menu .drop-down .drop-down > a:after {
+        content: "\ea9d";
+    }
+}
+
+/* Get Started Button */
+.get-started-btn {
+    margin-left: 25px;
+    background: linear-gradient(45deg, #FF6600 0%, hsl(202, 89%, 49%) 100%); /* *تدرج برتقالي ناري/رمادي دافئ* */
+    color: #18b0ca; /* نص داكن */
+    border-radius: 5px;
+    padding: 8px 25px 10px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 600;
+    font-family: "Cairo", "Inter", sans-serif;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 217, 255, 0.4); /* ظل بلون البرتقالي الناري */
+    border: 1px solid #FF6600;
+}
+
+.get-started-btn:hover {
+    background: #08b1c7; /* رمادي داكن دافئ */
+    color: #f0f0f0;
+    box-shadow: 0 6px 15px rgba(0, 153, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+    .get-started-btn {
+        margin: 0 35px 0 0;
+        padding: 6px 9px;
+        font-size: 8px
+    }
+}
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+    position: fixed;
+    top: 18px;
+    right: 15px;
+    z-index: 9998;
+    border: 0;
+    background: none;
+    font-size: 24px;
+    transition: all 0.4s;
+    outline: none !important;
+    line-height: 1;
+    cursor: pointer;
+    text-align: right;
+}
+
+.mobile-nav-toggle i {
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 55px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+    z-index: 9999;
+    overflow-y: auto;
+    background: #252525; /* رمادي داكن جداً */
+    transition: ease-in-out 0.2s;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+.mobile-nav * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mobile-nav a {
+    display: block;
+    position: relative;
+    color: #E0E0E0;
+    padding: 10px 20px;
+    font-weight: 500;
+    outline: none;
+}
+
+.mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
+    color: #FF6600;
+    text-decoration: none;
+}
+
+.mobile-nav .drop-down > a:after {
+    content: "\ea99";
+    font-family: IcoFont;
+    padding-left: 10px;
+    position: absolute;
+    right: 15px;
+}
+
+.mobile-nav .active.drop-down > a:after {
+    content: "\eaa1";
+}
+
+.mobile-nav .drop-down > a {
+    padding-right: 35px;
+}
+
+.mobile-nav .drop-down ul {
+    display: none;
+    overflow: hidden;
+}
+
+.mobile-nav .drop-down li {
+    padding-left: 20px;
+}
+
+.mobile-nav-overly {
+    width: 100%;
+    height: 100%;
+    z-index: 9997;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(11, 181, 211, 0.85); /* أسود شفاف جداً */
+    overflow: hidden;
+    display: none;
+    transition: ease-in-out 0.2s;
+}
+
+.mobile-nav-active {
+    overflow: hidden;
+}
+
+.mobile-nav-active .mobile-nav {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav-active .mobile-nav-toggle i {
+    color: #FF6600;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent; /* جعل خلفية الهيرو شفافة لتظهر خلفية الجسم */
+    border-bottom: 2px solid rgba(45, 45, 45, 0.5); /* حدود داكنة ناعمة وشفافة */
+    text-align: center;
+}
+
+#hero .container {
+    padding-top: 180px;
+}
+
+#hero h1 {
+    margin: 0;
+    padding-top: 70px;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: oklch(95.314% 0.00356 220.905 / 0.932); /* أبيض ناصع */
+    width: 60%;
+}
+
+#hero h2 {
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+    margin: 15px 0 0 0;
+    font-size: 24px;
+}
+/* تم إزالة .hero-img لأن الصورة المتحركة ستكون في الخلفية العامة */
+/* #hero .hero-img {
+    max-width: 60%;
+    margin-top: 20px;
+} */
+#hero .form{
+    padding-top: 10px;
+}
+#hero .form input {
+    border: 2px solid #4F4F4F; /* رمادي داكن دافئ للحدود */
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 0px 15px 2px 15px;
+    width: 580px;
+    height: 40px;
+    margin: 0 8px;
+    background-color: rgba(45, 45, 45, 0.7); /* خلفية حقل الإدخال داكنة وشفافة قليلاً */
+    color: #14eeee;
+}
+
+#hero .form button[type="submit"] {
+    font-family: "Cairo", "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 7px 30px;
+    border-radius: 3px;
+    transition: 0.5s;
+    margin: -5px;
+    border: 2px solid #056286;
+    color: #f4f5f7;
+    background: #0b064e; /* *برتقالي ناري ساطع* */
+}
+
+@media (max-width: 768px) {
+    #hero .form input {
+        border: 2px solid #4F4F4F;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 0px 15px 2px 15px;
+        width: 300px;
+        height: 40px;
+        margin: 0 8px;
+    }
+}
+
+@media (max-width: 992px) {
+    #hero h1 {
+        font-size: 36px;
+        line-height: 42px;
+        width: 100%;
+        margin-top: -180px;
+    }
+    #hero h2 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    /* تم إزالة .hero-img لأن الصورة المتحركة ستكون في الخلفية العامة */
+    /* #hero .hero-img {
+        max-width: 90%;
+        margin-top: 50px;
+    } */
+}
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+.section-bg {
+    background-color: rgba(26, 26, 26, 0.85); /* خلفية داكنة للأقسام مع شفافية لتظهر الخلفية الرئيسية */
+}
+
+.section-title {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #F0F0F0; /* أبيض ناصع */
+    font-family: "Lora", serif;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #0af1de; /* *برتقالي ناري ساطع* */
+    bottom: 0;
+    left: calc(50% - 25px);
+}
+
+.section-title p {
+    margin-bottom: 0;
+    color: #E0E0E0;
+}
+
+
+/*--------------------------------------------------------------
+# about
+--------------------------------------------------------------*/
+.about {
+    background: rgba(13, 13, 13, 0.85); /* أسود داكن جداً (خلفية للقسم) مع شفافية */
+    padding-bottom: 80px;
+}
+
+.about .section-title h2, .about .section-title p {
+    color: #F0F0F0;
+}
+
+.about .section-title h2::after {
+    background: #FF6600;
+}
+.about .section-title h3 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #F0F0F0;
+    padding-top: 10px;
+}
+
+.about .description {
+    font-size: 15px;
+    line-height: 28px;
+    margin-bottom: 0;
+    color: #E0E0E0;
+}
+
+/*--------------------------------------------------------------
+# Testimonials
+--------------------------------------------------------------*/
+.testimonials .testimonial-item {
+    box-sizing: content-box;
+    padding: 30px 30px 0 30px;
+    padding-left: 20px;
+    margin: 30px 15px;
+    text-align: center;
+    width: 500px;
+    min-height: 400px;
+    background-color: rgba(37, 37, 37, 0.9); /* خلفية رمادية داكنة وشفافة */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+
+.testimonials .testimonial-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    color: #F0F0F0;
+}
+
+.testimonials .testimonial-item h4 {
+    font-size: 14px;
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+    margin: 0;
+}
+
+.testimonials .testimonial-item .quote-icon-left, .testimonials .testimonial-item .quote-icon-right {
+    color: #4F4F4F; /* رمادي داكن دافئ */
+    font-size: 26px;
+}
+
+.testimonials .testimonial-item .quote-icon-left {
+    display: inline-block;
+    left: -5px;
+    position: relative;
+}
+
+.testimonials .testimonial-item .quote-icon-right {
+    display: inline-block;
+    right: -5px;
+    position: relative;
+    top: 10px;
+}
+
+.testimonials .testimonial-item p {
+    font-style: italic;
+    margin: 0 auto 15px auto;
+    color: #E0E0E0;
+}
+
+.testimonials .owl-nav, .testimonials .owl-dots {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.testimonials .owl-dot {
+    display: inline-block;
+    margin: 0 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #333333 !important; /* رمادي داكن عسكري */
+}
+
+.testimonials .owl-dot.active {
+    background-color: #FF6600 !important; /* *برتقالي ناري ساطع* */
+}
+
+@media (max-width: 767px) {
+    .testimonials {
+        margin: 30px 10px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Team
+--------------------------------------------------------------*/
+.team {
+    padding: 60px 0;
+}
+
+.team .member {
+    text-align: center;
+    margin-bottom: 20px;
+    background: rgba(37, 37, 37, 0.9); /* رمادي داكن للخلفية وشفاف */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid #4F4F4F; /* رمادي داكن دافئ */
+}
+
+.team .member .member-info {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: 0.2s;
+}
+
+.team .member .member-info-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    transition: bottom 0.4s;
+}
+
+.team .member .member-info-content h4 {
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 18px;
+    color: #F0F0F0;
+}
+
+.team .member .member-info-content span {
+    font-style: italic;
+    display: block;
+    font-size: 13px;
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+}
+
+.team .member .social {
+    position: absolute;
+    left: 0;
+    bottom: -38px;
+    right: 0;
+    height: 48px;
+    transition: bottom ease-in-out 0.4s;
+    text-align: center;
+}
+
+.team .member .social a {
+    transition: color 0.3s;
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.team .member .social a:hover {
+    color: #F0F0F0; /* أبيض للتحويم */
+}
+
+.team .member .social i {
+    font-size: 18px;
+    margin: 0 2px;
+}
+
+.team .member:hover .member-info {
+    background: linear-gradient(0deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 45, 45, 0.8) 20%, rgba(0, 0, 0, 0) 100%); /* تدرج رمادي داكن */
+    opacity: 1;
+    transition: 0.4s;
+}
+
+.team .member:hover .member-info-content {
+    bottom: 60px;
+    transition: bottom 0.4s;
+}
+
+.team .member:hover .social {
+    bottom: 0;
+    transition: bottom ease-in-out 0.4s;
+}
+
+/*--------------------------------------------------------------
+# Pricing
+--------------------------------------------------------------*/
+.pricing .box {
+    padding: 20px;
+    background: rgba(37, 37, 37, 0.9); /* رمادي داكن للخلفية وشفاف */
+    text-align: center;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid #4F4F4F; /* رمادي داكن دافئ */
+}
+
+.pricing .box h3 {
+    font-weight: 400;
+    padding: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #F0F0F0;
+}
+
+.pricing .box h4 {
+    font-size: 42px;
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+    font-weight: 500;
+    font-family: "Lora", serif;
+    margin-bottom: 20px;
+}
+
+.pricing .box h4 sup {
+    font-size: 20px;
+    top: -15px;
+    left: -3px;
+}
+
+.pricing .box h4 span {
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.pricing .box ul {
+    padding: 0;
+    list-style: none;
+    color: #E0E0E0;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.pricing .box ul li {
+    padding-bottom: 16px;
+}
+
+.pricing .box ul i {
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+    font-size: 18px;
+    padding-right: 4px;
+}
+
+.pricing .box ul .na {
+    color: #4F4F4F; /* رمادي دافئ للتخطيط */
+    text-decoration: line-through;
+}
+
+.pricing .box .btn-wrap {
+    padding: 15px;
+    text-align: center;
+}
+
+.pricing .box .btn-buy {
+    background: #4F4F4F; /* رمادي داكن دافئ */
+    color: #F0F0F0; /* نص أبيض */
+    display: inline-block;
+    padding: 10px 40px 12px 40px;
+    border-radius: 5px;
+    transition: none;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Cairo", "Inter", sans-serif;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pricing .box .btn-buy:hover {
+    background: #FF6600; /* *برتقالي ناري ساطع* */
+    color: #1A1A1A;
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.4);
+}
+
+.pricing .featured {
+    background: rgba(51, 51, 51, 0.9); /* رمادي داكن مميز وشفاف */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    border: 2px solid #FF6600; /* *إطار برتقالي ناري* */
+}
+
+.pricing .featured h3, .pricing .featured h4, .pricing .featured h4 span, .pricing .featured ul, .pricing .featured ul .na {
+    color: #F0F0F0;
+}
+
+.pricing .featured .btn-buy {
+    background: #FF6600; /* *برتقالي ناري ساطع* */
+    color: #1A1A1A; /* نص داكن */
+}
+
+.pricing .featured .btn-buy:hover {
+    background: #4F4F4F; /* رمادي داكن دافئ */
+    color: #F0F0F0;
+}
+
+/*--------------------------------------------------------------
+# Frequently Asked Questions
+--------------------------------------------------------------*/
+
+.faq .section-title h2, .faq .section-title p {
+    color: #F0F0F0;
+}
+
+.faq .section-title h2::after {
+    background: #FF6600;
+}
+
+.faq .faq-list {
+    padding: 0 100px;
+}
+
+.faq .faq-list ul {
+    padding: 0;
+    list-style: none;
+}
+
+.faq .faq-list li + li {
+    margin-top: 15px;
+}
+
+.faq .faq-list li {
+    padding: 30px;
+    background: rgba(37, 37, 37, 0.9); /* رمادي داكن وشفاف */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    position: relative;
+    border-left: 5px solid #4F4F4F; /* خط جانبي رمادي داكن دافئ */
+}
+
+.faq .faq-list a {
+    display: block;
+    position: relative;
+    font-family: "Lora", serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    padding: 0 30px;
+    outline: none;
+    color: #E0E0E0;
+}
+
+.faq .faq-list .icon-help {
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    left: 20px;
+    color: #FF6600; /* *برتقالي ناري ساطع* */
+}
+
+.faq .faq-list .icon-circle {
+    font-size: 17px;
+    color: #FF6600;
+}
+
+.faq .faq-list .icon-arrrow {
+    font-size: 20px;
+    color: #FF6600;
+}
+
+.faq .faq-list .icon-show, .faq .faq-list .icon-close {
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #FF6600;
+}
+
+.faq .faq-list p {
+    margin-bottom: 0;
+    padding: 10px 0 0 0;
+    color: #E0E0E0;
+}
+
+.faq .faq-list .icon-show {
+    display: none;
+}
+
+.faq .faq-list a.collapsed {
+    color: #E0E0E0;
+}
+
+.faq .faq-list a.collapsed:hover {
+    color: #FF6600;
+}
+
+.faq .faq-list a.collapsed .icon-show {
+    display: inline-block;
+}
+
+.faq .faq-list a.collapsed .icon-close {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .faq .faq-list {
+        padding: 0;
+    }
+}
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact .info-box {
+    color: #E0E0E0;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    padding: 20px 0 30px 0;
+    background: rgba(37, 37, 37, 0.9);
+    border-top: 3px solid #FF6600; /* *خط برتقالي ناري ساطع مميز* */
+}
+
+.contact .info-box i {
+    font-size: 32px;
+    color: #FF6600;
+    padding: 8px;
+}
+
+.contact .info-box h3 {
+    font-size: 20px;
+    color: #F0F0F0;
+    font-weight: 700;
+    margin: 10px 0;
+    font-family: "Lora", serif;
+}
+
+.contact .info-box p {
+    padding: 0;
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.contact .php-email-form {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    background: rgba(37, 37, 37, 0.9);
+}
+
+.contact .php-email-form .validate {
+    display: none;
+    color: #FF6600;
+    margin: 0 0 15px 0;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.contact .php-email-form .error-message {
+    display: none;
+    color: #1A1A1A;
+    background: #FF6600; /* *برتقالي ناري فاتح للخلفية* */
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+}
+
+.contact .php-email-form .sent-message {
+    display: none;
+    color: #1A1A1A;
+    background: #FF6600; /* *برتقالي ناري لرسالة النجاح* */
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+}
+
+.contact .php-email-form .loading {
+    display: none;
+    background: #252525;
+    text-align: center;
+    padding: 15px;
+    color: #F0F0F0;
+}
+
+.contact .php-email-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #FF6600; /* *برتقالي ناري* */
+    border-top-color: #4F4F4F; /* *رمادي داكن دافئ* */
+    -webkit-animation: animate-loading 1s linear infinite;
+    animation: animate-loading 1s linear infinite;
+}
+
+.contact .php-email-form input, .contact .php-email-form textarea {
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 14px;
+    border: 1px solid #4F4F4F; /* رمادي داكن دافئ للحدود */
+    background-color: rgba(26, 26, 26, 0.8); /* أسود داكن للخلفية وشفاف */
+    color: #E0E0E0;
+}
+
+.contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
+    border-color: #FF6600;
+}
+
+.contact .php-email-form input {
+    padding: 20px 15px;
+}
+
+.contact .php-email-form textarea {
+    padding: 12px 15px;
+}
+
+.contact .php-email-form button[type="submit"] {
+    background: #FF6600;
+    border: 0;
+    padding: 10px 24px;
+    color: #1A1A1A;
+    transition: 0.4s;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.contact .php-email-form button[type="submit"]:hover {
+    background: #4F4F4F;
+    color: #F0F0F0;
+}
+
+@-webkit-keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*--------------------------------------------------------------
+# Breadcrumbs
+--------------------------------------------------------------*/
+.breadcrumbs {
+    margin-top: 70px;
+    padding: 10px 0;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
+    background: rgba(24, 224, 91, 0.9);
+}
+
+.breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.breadcrumbs ol li {
+    color: #E0E0E0;
+}
+
+.breadcrumbs ol li a {
+    color: #FF6600;
+}
+
+.breadcrumbs ol li + li {
+    padding-left: 10px;
+}
+
+.breadcrumbs ol li + li::before {
+    display: inline-block;
+    padding-right: 10px;
+    color: #23d40c;
+    content: "/";
+}
+
+/*--------------------------------------------------------------
+# Portfolio Details
+--------------------------------------------------------------*/
+.portfolio-details {
+    padding-top: 40px;
+    background-color: transparent; /* جعل خلفية تفاصيل البورتفوليو شفافة */
+}
+
+.portfolio-details .portfolio-details-carousel .owl-nav, .portfolio-details .portfolio-details-carousel .owl-dots {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.portfolio-details .portfolio-details-carousel .owl-dot {
+    display: inline-block;
+    margin: 0 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #333333 !important;
+}
+
+.portfolio-details .portfolio-details-carousel .owl-dot.active {
+    background-color: #FF6600 !important;
+}
+
+.portfolio-details .portfolio-info {
+    background: rgba(37, 37, 37, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.portfolio-details .portfolio-info h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #F0F0F0;
+}
+
+.portfolio-details .portfolio-info ul {
+    list-style: none;
+    padding: 0;
+    font-size: 15px;
+    color: #E0E0E0;
+}
+
+.portfolio-details .portfolio-info ul li + li {
+    margin-top: 10px;
+}
+
+.portfolio-details .portfolio-info p {
+    font-size: 15px;
+    padding: 15px 0 0 0;
+    color: #E0E0E0;
+}
+
+@media (max-width: 992px) {
+    .portfolio-details .portfolio-info {
+        padding-top: 20px;
+    }
+}

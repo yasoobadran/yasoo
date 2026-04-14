@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>PhishDetector</title>
+  
+  <link href="static/assets/img/newlogo.jpg" rel="icon">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="static/style.css" rel="stylesheet">
+
+  <style>
+    /* --- تأثير اللمعة (Shimmer) للوجو والأسماء --- */
+    .shimmer-animated {
+      font-weight: bold;
+      background: linear-gradient(90deg, #fff 0%, #00c3ff 50%, #fff 100%);
+      background-size: 200% auto;
+      color: #fff;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerEffect 3s infinite linear;
+      display: inline-block;
+    }
+
+    @keyframes shimmerEffect {
+      to { background-position: 200% center; }
+    }
+
+    /* تخصيص لمعة اللوجو في الهيدر */
+    .logo a.shimmer-animated {
+        font-size: 28px;
+        letter-spacing: 1px;
+        text-decoration: none;
+    }
+
+    /* --- حاوية الفحص الـ 3D --- */
+    .scanner-container {
+        position: relative;
+        overflow: hidden;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transform-style: preserve-3d;
+        width: 100%;
+        max-width: 650px;
+        transition: 0.5s;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    /* --- خط الليزر النيون --- */
+    .laser-line {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 5px;
+        background: #00f3ff;
+        box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+        z-index: 10;
+        display: none;
+    }
+    @keyframes scanMove { 0% { top: 0; } 100% { top: 100%; } }
+
+    /* --- حالات النتيجة (أمان / خطر) --- */
+    .safe-glow { border: 2px solid #00ff88 !important; box-shadow: 0 0 30px rgba(0, 255, 136, 0.4); }
+    .danger-glow { border: 2px solid #ff4d4d !important; box-shadow: 0 0 30px rgba(255, 77, 77, 0.4); animation: shake 0.4s; }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+    /* تنسيق الأسماء في About */
+    .name-list { margin-top: 20px; }
+    .name-item { display: block; margin-bottom: 10px; font-size: 1.5rem; }
+  </style>
+</head>
+
+<body>
+
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo mr-auto"><a href="index.html" class="shimmer-animated">PhishDetector</a></h1>
+      
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="drop-down">
+            <a href="#">☠️ Menu</a>
+            <ul>
+               <li class="active"><a href="index.html">Home</a></li>
+              <li><a onclick="scrolldiv('about')" style="cursor:pointer">About</a></li>
+              <li><a href="usecases.html" target="_blank">Usecases</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
+      <h1 style="text-align:center; margin-bottom: 30px;">FAKE WEBSITE DETECTION</h1>
+      
+      <div class="scanner-container" id="mainScanner">
+        <div id="laser" class="laser-line"></div>
+        
+        <form id="urlForm" class="form">
+          <div style="position: relative;">
+            <input type="url" id="urlInput" class="form-control" placeholder="Enter URL to analyze..." required 
+                   style="height: 55px; background: rgba(255,255,255,0.1); color: #fff; padding-right: 80px; border: 1px solid rgba(255,255,255,0.2);">
+            <div style="position: absolute; right: 15px; top: 12px; color: #00f3ff; display: flex; gap: 10px; font-size: 1.2rem;">
+                <label for="fDoc"><i class="fa fa-file-text-o" style="cursor:pointer"></i></label>
+                <label for="fImg"><i class="fa fa-image" style="cursor:pointer"></i></label>
+                <input type="file" id="fDoc" style="display:none">
+                <input type="file" id="fImg" accept="image/*" style="display:none">
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-info btn-lg px-5" style="border-radius: 50px; font-weight: bold; background: #00c3ff; border: none;">SCAN URL</button>
+          </div>
+        </form>
+
+        <div id="result" style="margin-top: 25px; display: none; text-align: center;">
+            <p id="urlDisplay" style="color: #ccc; font-style: italic; word-break: break-all;"></p>
+            <h2 id="resultText" style="font-weight: bold;"></h2>
+            
+            <div id="actionButtons" class="mt-3">
+                <button id="openBtn" class="btn btn-success btn-action" style="display:none;">Open / Visit</button>
+                <button id="visitAnywayBtn" class="btn btn-outline-danger btn-action" style="display:none;">Visit Anyway</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <section id="faq" class="faq">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title"><h2>F.A.Q</h2></div>
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse" href="#faq1">What is phishing? <i class="bx bx-chevron-down icon-show"></i></a>
+              <div id="faq1" class="collapse show" data-parent=".faq-list">
+                <p>Phishing is a cybercrime in which a target or targets are contacted by email, telephone, or text message by someone posing as a legitimate institution to lure individuals into providing sensitive data.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>About PhishDetector</h2>
+          <p>This Project is done for Final Year Students of Computer Science at HIMIT Institution.</p>
+          <hr style="border-top: 1px solid rgba(0, 195, 255, 0.2); width: 50%; margin: 20px auto;">
+          
+          <h3 style="color: #00c3ff; margin-bottom: 20px;">Our Team</h3>
+          <div class="name-list">
+            <span class="shimmer-animated name-item">Hassan Ragab</span>
+            <span class="shimmer-animated name-item">Mahmoud Mohamed</span>
+            <span class="shimmer-animated name-item">Salma Mansour</span>
+            <span class="shimmer-animated name-item">Yassin Salem</span>
+            <span class="shimmer-animated name-item">Youssef Mostafa</span>
+          </div>
+
+          <h3 style="color: #00c3ff; margin-top: 40px; margin-bottom: 20px;">Supervised By</h3>
+          <div class="name-list">
+            <span class="shimmer-animated h5 d-block" style="animation-delay: 0.5s;">DR: Riham Eissa</span>
+            <span class="shimmer-animated h5 d-block" style="animation-delay: 1s;">DR: Amira Al-Attar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="static/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+  <script>
+    VanillaTilt.init(document.querySelector(".scanner-container"), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.3
+    });
+
+    function scrolldiv(id) {
+        document.getElementById(id).scrollIntoView({behavior: "smooth"});
+    }
+
+    document.getElementById('urlForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const laser = document.getElementById('laser');
+        const resBox = document.getElementById('result');
+        const mainBox = document.getElementById('mainScanner');
+        const url = document.getElementById('urlInput').value;
+
+        resBox.style.display = 'none';
+        mainBox.className = 'scanner-container';
+        laser.style.display = 'block';
+        laser.style.animation = 'scanMove 1.5s infinite linear';
+
+        setTimeout(() => {
+            laser.style.display = 'none';
+            resBox.style.display = 'block';
+            document.getElementById('urlDisplay').textContent = url;
+            
+            const isSafe = !url.toLowerCase().includes("virus") && !url.toLowerCase().includes("bad");
+
+          if(isSafe) {
+                document.getElementById('resultText').textContent =  "✓ WEBSITE IS SAFE";
+                document.getElementById('resultText').style.color = "#00ff88";
+                mainBox.classList.add('safe-glow');
+                
+                // إظهار زر الفتح (للروابط أو الملفات الآمنة)
+                openBtn.style.display = 'inline-block';
+                openBtn.onclick = () => {
+                    const destination = currentFileUrl ? currentFileUrl : (urlValue.startsWith('http') ? urlValue : 'https://' + urlValue);
+                    window.open(destination, '_blank');
+                };
+            } else {
+                document.getElementById('resultText').textContent = "⚠️ DANGER: PHISHING DETECTED";
+                document.getElementById('resultText').style.color = "#ff4d4d";
+                mainBox.classList.add('danger-glow');
+                
+                // إظهار زر "Visit Anyway" في حالة الخطر
+                visitAnywayBtn.style.display = 'inline-block';
+                visitAnywayBtn.onclick = () => {
+                    const destination = currentFileUrl ? currentFileUrl : (urlValue.startsWith('http') ? urlValue : 'https://' + urlValue);
+                    window.open(destination, '_blank');
+                };
+            }
+            // مسح ملف الـ Object URL بعد الاستخدام (اختياري)
+            currentFileUrl = null; 
+        }, 2500);
+    });
+    
+
+    AOS.init();
+  </script>
+</body>
+</html>   
